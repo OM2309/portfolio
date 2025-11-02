@@ -13,19 +13,26 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      # 1. Setup Node.js
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: "20"
-          cache: "pnpm"
+          cache: "pnpm" # Enables pnpm cache
 
+      # 2. Install pnpm (OFFICIAL WAY)
       - name: Install pnpm
-        run: npm install -g pnpm@latest
+        uses: pnpm/action-setup@v4
+        with:
+          version: latest
+          run_install: false # We'll install deps later
 
+      # 3. Get pnpm store path
       - name: Get pnpm store directory
         id: pnpm-cache
-        run: echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
+        run: echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_OUTPUT
 
+      # 4. Cache pnpm store
       - name: Cache pnpm store
         uses: actions/cache@v4
         with:
@@ -34,9 +41,11 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-pnpm-store-
 
+      # 5. Install dependencies
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
+      # 6. Run checks
       - name: Lint
         run: pnpm lint
 
