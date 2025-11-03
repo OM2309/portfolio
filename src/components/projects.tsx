@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
 import { ExternalLink, Github } from "lucide-react";
 
 export default function Projects() {
@@ -22,7 +23,7 @@ export default function Projects() {
       ],
       liveUrl: "https://chatcollect.com",
       sourceUrl: "https://github.com/om/chat-collect",
-      mockup: "/images/Hop.jpg", // Replace with your image
+      mockup: "/images/Hop.jpg",
     },
     {
       title: "Magic UI",
@@ -41,7 +42,7 @@ export default function Projects() {
       ],
       liveUrl: "https://magicui.design",
       sourceUrl: "https://github.com/magic-ui/magic-ui",
-      mockup: "/images/Hop.jpg", // Replace with your image
+      mockup: "/images/Hop.jpg",
     },
   ];
 
@@ -53,70 +54,76 @@ export default function Projects() {
         </p>
       </div>
 
-      <div className="grid gap-12 md:grid-cols-2">
+      <div className="grid gap-8 md:grid-cols-2">
         {projects.map((project) => (
-          <div key={project.title} className="space-y-6">
-            {/* Mockup Image */}
-            <div className="relative group">
-              <div className="rounded-2xl overflow-hidden shadow-2xl ring-1 ring-gray-200 dark:ring-gray-800">
-                <Image
-                  src={project.mockup}
-                  alt={project.title}
-                  width={400}
-                  height={400}
-                  className="object-cover transition-transform group-hover:scale-105 duration-300"
-                />
-              </div>
+          <Card
+            key={project.title}
+            className="overflow-hidden border shadow-lg hover:shadow-xl transition-shadow duration-300"
+          >
+            {/* Image - Smaller & Responsive */}
+            <div className="relative h-48 overflow-hidden ">
+              <Image
+                src={project.mockup}
+                alt={project.title}
+                height={400}
+                width={400}
+                className="object-cover rounded-md transition-transform duration-300 hover:scale-105"
+              />
             </div>
 
-            {/* Content */}
-            <div className="space-y-3">
-              <h3 className="text-xl font-semibold text-foreground">
-                {project.title}
-              </h3>
-              <p className="text-sm text-muted-foreground">{project.period}</p>
-              <p className="text-sm text-muted-foreground  leading-relaxed">
+            <CardContent className="p-5 space-y-3">
+              <div>
+                <h3 className="text-lg font-semibold text-foreground">
+                  {project.title}
+                </h3>
+              </div>
+
+              <p className="text-sm text-muted-foreground leading-relaxed line-clamp-3">
                 {project.description}
               </p>
 
               {/* Tech Stack */}
-              <div className="flex flex-wrap gap-2">
+              <div className="flex flex-wrap gap-1.5">
                 {project.tech.map((tech) => (
-                  <Badge key={tech} variant="secondary" className="text-xs">
+                  <Badge
+                    key={tech}
+                    variant="secondary"
+                    className="text-xs py-0.5 px-2"
+                  >
                     {tech}
                   </Badge>
                 ))}
               </div>
 
               {/* Buttons */}
-              <div className="flex gap-3 pt-2">
-                <Button size="sm" variant="outline" asChild>
+              <div className="flex gap-2 pt-2">
+                <Button size="sm" variant="outline" asChild className="text-xs">
                   <a
                     href={project.liveUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-1.5"
+                    className="flex items-center gap-1"
                   >
-                    <ExternalLink className="w-3.5 h-3.5" />
-                    Website
+                    <ExternalLink className="w-3 h-3" />
+                    Live
                   </a>
                 </Button>
                 {project.sourceUrl && (
-                  <Button size="sm" variant="ghost" asChild>
+                  <Button size="sm" variant="ghost" asChild className="text-xs">
                     <a
                       href={project.sourceUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-1.5"
+                      className="flex items-center gap-1"
                     >
-                      <Github className="w-3.5 h-3.5" />
-                      Source
+                      <Github className="w-3 h-3" />
+                      Code
                     </a>
                   </Button>
                 )}
               </div>
-            </div>
-          </div>
+            </CardContent>
+          </Card>
         ))}
       </div>
     </div>

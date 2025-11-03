@@ -14,7 +14,7 @@ export default function Home() {
       </div>
 
       <div className="flex flex-col items-start space-y-8 max-w-2xl mx-auto w-full">
-        {/* <About /> */}
+        <About />
         <Experience />
         {/* <Projects /> */}
         <Skills />
