@@ -9,7 +9,7 @@ import Skills from "@/components/skills";
 export default function Home() {
   return (
     <div className="flex flex-col min-h-screen px-6 py-8">
-      <div className="flex flex-col items-center mb-10">
+      <div className="flex flex-col items-center ">
         <ProfileHeader />
       </div>
 

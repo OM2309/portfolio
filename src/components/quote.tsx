@@ -3,7 +3,7 @@ import { FaQuoteLeft } from "react-icons/fa6";
 export default function Quote() {
   return (
     <figure className="">
-      <div className="relative border rounded-2xl p-8 shadow-lg ">
+      <div className="relative p-8 ">
         {/* Large Quote Marks (behind text) */}
         <div className="absolute -top-4 left-6 text-[10rem] text-gray-300 opacity-10 select-none z-0">
           <FaQuoteLeft />

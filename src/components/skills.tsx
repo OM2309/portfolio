@@ -38,7 +38,7 @@ export default function Skills() {
   return (
     <div className="space-y-8">
       <div>
-        <p className="text-lg font-semibold text-gray-600 dark:text-gray-400">
+        <p className="text-lg font-semibold text-white mb-8">
           Technologies & Tools
         </p>
       </div>
@@ -49,10 +49,10 @@ export default function Skills() {
           return (
             <div
               key={skill.name}
-              className="flex items-center gap-2 px-4 py-3 rounded-lg colors border border-dashed border-gray-600"
+              className="flex items-center gap-2 px-4 py-3 rounded-lg colors border  border-gray-600"
             >
               <Icon className="w-5 h-5 text-gray-300" />
-              <span className="text-sm font-medium text-gray-300">
+              <span className="text-sm font-medium text-gray-300 italic">
                 {skill.name}
               </span>
             </div>
